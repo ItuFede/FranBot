@@ -1,11 +1,11 @@
-const config = require('./config.json');
+require('dotenv').config();
 const Discord = require('discord.js');
 const { getCommandFiles, mensajeError, validarMensaje } = require('./util');
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 
 const commandFiles = getCommandFiles();
-const prefix = config.prefijo;
+const prefix = process.env.BOT_PREFIX;
 
 for (const file of commandFiles) {
     const command = require(file);
@@ -51,4 +51,4 @@ bot.on("ready", () => {
     console.log("BOT ONLINE!");
 });
 
-bot.login(config.token);
+bot.login(process.env.ACCESS_TOKEN);

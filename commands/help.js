@@ -1,4 +1,3 @@
-const config = require('../config.json');
 const { mensajeError } = require('../util');
 
 module.exports = {
@@ -10,10 +9,11 @@ module.exports = {
         try {
             let commandList = [];
             bot.commands.forEach(element => {
+                let prefijo = process.env.BOT_PREFIX;
                 if (element.requiereArgumentos) {
-                    commandList.push({ name: `${config.prefijo}${element.name} N`, value: `${element.descripcion}.`});
+                    commandList.push({ name: `${prefijo}${element.name} N`, value: `${element.descripcion}.`});
                 } else {
-                    commandList.push({ name: `${config.prefijo}${element.name}`, value: `${element.descripcion}.`});
+                    commandList.push({ name: `${prefijo}${element.name}`, value: `${element.descripcion}.`});
                 }
             });
 
